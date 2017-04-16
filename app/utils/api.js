@@ -12,5 +12,13 @@ module.exports = {
 			.then(function(responce){
 				return responce.data
 			})
+	},
+	create_new_document: function(document_name){
+		var text = ""
+		axios.post('http://127.0.0.1:9393/documents/',{
+			name: document_name,
+			document_text: text
+		})
 	}
+
 }

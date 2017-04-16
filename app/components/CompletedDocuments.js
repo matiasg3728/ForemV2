@@ -1,5 +1,24 @@
 var React = require('react');
 var api = require('../utils/api');
+var NameSubmit = require('./NameSubmit')
+
+function ListDocuments(props){
+		return(
+			<ul className='CompletedDocumentsList'>
+			{props.documents.map(function(doc){
+				return(
+					<li
+					key={doc.document_id}
+					onClick={props.selectDocument.bind(null,doc)}
+					>	
+						{doc.name}
+					</li>
+				)
+			})}
+			</ul>
+		)
+
+	}
 
 class CompletedDocuments extends React.Component{
 	constructor(props) {
@@ -18,6 +37,7 @@ class CompletedDocuments extends React.Component{
 	}
 	componentDidMount(){
 		console.log('In componentDidMount')
+		//look in the utils to see what this method does
 		api.fetchCompletedDocuments()
 			.then(function(docs){
 				this.setState(function(){
@@ -27,6 +47,14 @@ class CompletedDocuments extends React.Component{
 					}
 				})
 			}.bind(this));
+	}
+	make_new_document(document_name){
+		// First we need to make a post method in our api.js
+		// Then we take the passed in parameter and pass it to
+		// 	the post method create_new_document(document_name)
+		// 	while this post method is only going to take one param,
+		// 	its going to give the new doc a empty value, our patch
+		// 	method will be the thing that gives the doc the txt we want
 	}
     selectDocument(doc){
     	this.setState(function(){
@@ -40,6 +68,7 @@ class CompletedDocuments extends React.Component{
     	console.log(this.state.selected_document)
     	return(
     		<div>
+    		<NameSubmit make_new_document={this.make_new_document}/>
     		<ListDocuments
     		documents={this.state.documents}
     		selectDocument={this.selectDocument}
@@ -48,31 +77,8 @@ class CompletedDocuments extends React.Component{
     	)
     }
 }
-    		// <p>We want to return a list of all documents and 
-    		// a component that has a button and a input box(this will allow
-    		// us to pass in the name of the new project)
-    		// </p>
 
-function ListDocuments(props){
-	//var documents = props.documents;
-	//console.log(documents)
-		return(
-			<ul>
-			{props.documents.map(function(doc){
-				return(
-					<li
-					key={doc.document_id}
-					onClick={props.selectDocument.bind(null,doc)}
-					>
-						
-						{doc.name}
-					</li>
-				)
-			})}
-			</ul>
-		)
 
-	}
 
 module.exports = CompletedDocuments;
 
