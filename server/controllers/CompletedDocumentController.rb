@@ -5,6 +5,8 @@ class CompletedDocumentController < ApplicationController
 	# This will return all the 'Completed Documents'
 	# in the data-base
 	get '/' do
+		response['Access-Control-Allow-Origin'] = '*'
+
 		content_type :json
 
 		@completed_documents = CompletedDocument.all
@@ -14,6 +16,7 @@ class CompletedDocumentController < ApplicationController
 
 	# This will return a specific 'Completed Document'
 	get '/:id' do
+		response['Access-Control-Allow-Origin'] = '*'
 
 		id = params[:id]
 
@@ -38,7 +41,7 @@ class CompletedDocumentController < ApplicationController
 		@completed_document.document_text = params[:document_text]
 		@completed_document.save
 
-		@completed_document.to_json
+		# @completed_document.to_json
 
 	end
 
@@ -54,7 +57,7 @@ class CompletedDocumentController < ApplicationController
 		@completed_document.save
 		# p(@completed_document)
 
-		@completed_document.to_json
+		# @completed_document.to_json
 
 	end
 
