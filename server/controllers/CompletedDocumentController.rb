@@ -2,6 +2,18 @@ class CompletedDocumentController < ApplicationController
 
 	# '/' === '.../documents/'
 
+
+	options "*" do
+    	response.headers["Allow"] = "HEAD,GET,POST,PUT,PATCH,DELETE,OPTIONS"
+	
+    	# Needed for AngularJS
+    	response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+    	response['Access-Control-Allow-Origin'] = '*'
+	
+    	"cool"
+ 	end
+
+
 	# This will return all the 'Completed Documents'
 	# in the data-base
 	get '/' do
@@ -32,6 +44,7 @@ class CompletedDocumentController < ApplicationController
 	# submit it?  If we do then we have to do it here and maybe in the patch request too.  
 	# We can add that in latter tho...
 	post '/' do
+		response['Access-Control-Allow-Origin'] = '*'
 
 		# id = params[:id]
 
@@ -49,6 +62,9 @@ class CompletedDocumentController < ApplicationController
 	# **Dev-Note** 
 	patch '/:id' do
 
+		response['Access-Control-Allow-Origin'] = '*'
+
+
 		id = params[:id]
 
 		@completed_document = CompletedDocument.find(id)
@@ -63,6 +79,7 @@ class CompletedDocumentController < ApplicationController
 
 	# Deletes a specific 'Completed Document'
 	delete '/:id' do
+		response['Access-Control-Allow-Origin'] = '*'
 
 		id = params[:id]
 

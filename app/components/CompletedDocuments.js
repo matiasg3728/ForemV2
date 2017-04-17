@@ -49,12 +49,9 @@ class CompletedDocuments extends React.Component{
 			}.bind(this));
 	}
 	make_new_document(document_name){
-		// First we need to make a post method in our api.js
-		// Then we take the passed in parameter and pass it to
-		// 	the post method create_new_document(document_name)
-		// 	while this post method is only going to take one param,
-		// 	its going to give the new doc a empty value, our patch
-		// 	method will be the thing that gives the doc the txt we want
+		console.log(document_name)
+
+		api.create_new_document(document_name)
 	}
     selectDocument(doc){
     	this.setState(function(){

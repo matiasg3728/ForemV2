@@ -13,6 +13,7 @@ class NameSubmit extends React.Component{
 
 	update_text(event){
 		var value = event.target.value;
+		console.log(value)
 		// Side Note of Power:
 		// 	Dont ever fucking put 'event.target.value'
 		// 	in the setState bc it just fucks everything 
@@ -26,10 +27,13 @@ class NameSubmit extends React.Component{
 	}
 
 	submit_name(){
+		console.log('inside NameSubmit, submit_name')
 		this.props.make_new_document(this.state.input_text)
+
 	}
 
 	render(){
+
 		return(
 		<div className='NameSubmitBox'>
 		<form>
