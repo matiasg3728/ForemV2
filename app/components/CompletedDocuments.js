@@ -1,7 +1,15 @@
 var React = require('react');
 var api = require('../utils/api');
 var NameSubmit = require('./NameSubmit')
+/** For some reason our HTML elements are all showing up at the bottom
+of the page and i dont understand why.  Also do we need router? I have
+this gut feeling that i dont. I dont think i need a component to
+show the completed docs and the copies.  I think i just need one, lets rethink it
+tomorrow after we get someone to help me with the fucking html elements problem**/ 
 
+/** I think im going to change this 'ListDocuments' component to
+a sidebar component that will either show a list of project or
+copies **/
 function ListDocuments(props){
 		return(
 			<ul className='CompletedDocumentsList'>
