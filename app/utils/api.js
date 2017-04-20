@@ -22,12 +22,12 @@ module.exports = {
 	create_new_document: function(document_name){
 		var text = ""
 		console.log("inside app.js")
-		axios.post('http://127.0.0.1:9393/documents/' , qs.stringify({
+		return axios.post('http://127.0.0.1:9393/documents/' , qs.stringify({
 			name: document_name,
 			document_text: text
 			})
 		).then(function(responce){
-			console.log(document_name)
+			return responce.data
 		}).catch(function(error){
 			console.log(error)
 		})

@@ -53,9 +53,10 @@ class CompletedDocumentController < ApplicationController
 		@completed_document.name = params[:name]
 		@completed_document.document_text = params[:document_text]
 		@completed_document.save
-
-		# @completed_document.to_json
-
+		
+		
+		@completed_documents = CompletedDocument.all
+		@completed_documents.to_json
 	end
 
 	# Updates specific 'Completed Document' document_text value

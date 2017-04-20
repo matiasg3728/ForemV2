@@ -1,5 +1,11 @@
 var React = require('react');
 
+/*
+	I dont think we need to change alot in this file,
+	its just a prop that is a input form and a button that
+	sends whatever is input to its parent
+*/
+
 class NameSubmit extends React.Component{
 	constructor(props) {
 		super(props);
@@ -13,7 +19,7 @@ class NameSubmit extends React.Component{
 
 	update_text(event){
 		var value = event.target.value;
-		console.log(value)
+		//console.log(value, this.props)
 		// Side Note of Power:
 		// 	Dont ever fucking put 'event.target.value'
 		// 	in the setState bc it just fucks everything 
@@ -27,8 +33,8 @@ class NameSubmit extends React.Component{
 	}
 
 	submit_name(){
-		console.log('inside NameSubmit, submit_name')
-		this.props.make_new_document(this.state.input_text)
+		//console.log(this.props)
+		this.props.pass_up(this.state.input_text)
 
 	}
 

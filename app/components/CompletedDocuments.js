@@ -1,15 +1,8 @@
 var React = require('react');
 var api = require('../utils/api');
 var NameSubmit = require('./NameSubmit')
-/** For some reason our HTML elements are all showing up at the bottom
-of the page and i dont understand why.  Also do we need router? I have
-this gut feeling that i dont. I dont think i need a component to
-show the completed docs and the copies.  I think i just need one, lets rethink it
-tomorrow after we get someone to help me with the fucking html elements problem**/ 
+import {Link, IndexLink} from 'react-router-dom'
 
-/** I think im going to change this 'ListDocuments' component to
-a sidebar component that will either show a list of project or
-copies **/
 function ListDocuments(props){
 		return(
 			<ul className='CompletedDocumentsList'>
@@ -19,7 +12,7 @@ function ListDocuments(props){
 					key={doc.document_id}
 					onClick={props.selectDocument.bind(null,doc)}
 					>	
-						{doc.name}
+						<Link to={'/work/' + doc.document_id}>{doc.name}</Link>					
 					</li>
 				)
 			})}
@@ -39,10 +32,27 @@ class CompletedDocuments extends React.Component{
 		};
 
 		this.selectDocument = this.selectDocument.bind(this);
+		this.makeNewDocument = this.makeNewDocument.bind(this);
 		//the line above allows us to modulate this component
 		//so that whenever selectDocument is called it's context will
 		//refer to this class
 	}
+
+
+	makeNewDocument(document_name){
+		//console.log(api.fetchCompletedDocuments())
+		console.log(api.create_new_document(document_name))
+			// .then(function(docs){
+			// 	this.setState(function(){
+			// 		return{
+			// 			documents:docs,
+			// 			selected_document:null
+			// 		}
+			// 	})
+			// }.bind(this))
+
+	}
+
 	componentDidMount(){
 		console.log('In componentDidMount')
 		//look in the utils to see what this method does
@@ -56,11 +66,6 @@ class CompletedDocuments extends React.Component{
 				})
 			}.bind(this));
 	}
-	make_new_document(document_name){
-		console.log(document_name)
-
-		api.create_new_document(document_name)
-	}
     selectDocument(doc){
     	this.setState(function(){
     		return {
@@ -70,10 +75,11 @@ class CompletedDocuments extends React.Component{
     	});
     }
     render(){
-    	console.log(this.state.selected_document)
+
+    	console.log(this.makeNewDocument, 'make new doc', this)
     	return(
     		<div>
-    		<NameSubmit make_new_document={this.make_new_document}/>
+    		<NameSubmit pass_up={this.makeNewDocument}/>
     		<ListDocuments
     		documents={this.state.documents}
     		selectDocument={this.selectDocument}

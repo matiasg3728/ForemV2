@@ -7,7 +7,7 @@ class DocumentEditor extends React.Component{
 		// the selected doc will be passed in the props
 		// Our server is what
 		this.state ={
-			current_copy:null
+			current_text:''
 		}
 		
 	}
