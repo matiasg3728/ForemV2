@@ -18,6 +18,7 @@ class App extends React.Component{
 			<Route exact path='/' test={this.state.test} component={CompletedDocuments} />
 
 			<Route path='/work/:document_id' component={Copy}/>
+			
 			</div>
 		)
 	}

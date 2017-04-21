@@ -40,21 +40,23 @@ class CompletedDocuments extends React.Component{
 
 
 	makeNewDocument(document_name){
-		//console.log(api.fetchCompletedDocuments())
-		console.log(api.create_new_document(document_name))
-			// .then(function(docs){
-			// 	this.setState(function(){
-			// 		return{
-			// 			documents:docs,
-			// 			selected_document:null
-			// 		}
-			// 	})
-			// }.bind(this))
+		/*
+			fuck yeah mofo this shit works perf, so dont fuck with it
+		*/
+		api.create_new_document(document_name)
+			.then(function(docs){
+				this.setState(function(){
+					return{
+						documents:docs,
+						selected_document:null
+					}
+				})
+			}.bind(this))
 
 	}
 
 	componentDidMount(){
-		console.log('In componentDidMount')
+		console.log('In componentDidMount_doc')
 		//look in the utils to see what this method does
 		api.fetchCompletedDocuments()
 			.then(function(docs){
@@ -75,8 +77,6 @@ class CompletedDocuments extends React.Component{
     	});
     }
     render(){
-
-    	console.log(this.makeNewDocument, 'make new doc', this)
     	return(
     		<div>
     		<NameSubmit pass_up={this.makeNewDocument}/>
